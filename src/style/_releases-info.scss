@@ -1,0 +1,134 @@
+.releases-info-title,
+.releases-info-title-link {
+  color: $white;
+  font-weight: 500;
+  font-size: 22px;
+  margin: 40px 0;
+  display: block;
+}
+
+.releases-info-title-link {
+  text-decoration: none;
+  &:hover{
+    color: #d7d7d7;
+  }
+}
+
+.releases-info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  & .releases-info-item:not(:last-of-type) {
+    /*margin-bottom: 15px;*/
+  }
+}
+
+.releases-info-item {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.releases-info-link {
+
+  text-decoration: none;
+}
+
+.version-history-wrapper {
+  background-color: $darkBlack;
+  border-radius: 3px;
+  padding: 25px 15px;
+  color: $white;
+
+}
+
+.version-history-title {
+  margin: 0;
+  padding: 0;
+  color: $white;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.version-history-date {
+  font-size: 12px;
+  color: $lightBluishGrey;
+  display: flex;
+}
+
+.version-history-copy-icon {
+  width: 25px;
+  height: 25px;
+  fill: $purple;
+  cursor: pointer;
+
+  &:hover {
+    fill: darken($purple, 10);
+  }
+}
+
+.version-history-header{
+border-bottom: 2px solid $lightBlack;
+padding-bottom: 20px;
+margin-bottom: 20px;
+}
+.version-history-sub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.version-history-details {
+  margin: 0;
+  padding: 0;
+  text-align: justify;
+  font-size: 15px;
+  line-height: 20PX;
+  padding-bottom: 20px;
+  border-bottom: 2px solid $lightBlack;
+}
+
+.features-list {
+  margin: 0;
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.features-list-title {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  width: 45px;
+  height: 18px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  margin-bottom: 15px;
+
+  &--New {
+    background-color: $green;
+  }
+}
+
+.features-item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.feature-item-icon {
+  width: 15px;
+  height: 15px;
+  fill: $lightBluishGrey;
+  margin-bottom: 2px;
+}
+
+.features-item-text {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 20px;
+  margin-left: 10px;
+}
