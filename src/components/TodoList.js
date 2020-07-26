@@ -69,7 +69,7 @@ const TodoList = () => {
                }
             };
             return (
-               <PerfectScrollbar wheelSpeed={5} className={'todo-wrapper--scroll'}>
+               <PerfectScrollbar className={'todo-wrapper--scroll'}>
                   <ul className={'todo-list'}>{renderSwitch()}</ul>
                </PerfectScrollbar>
             );

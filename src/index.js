@@ -29,6 +29,41 @@ class App extends React.Component {
                description: 'read',
                status: 0,
             },
+            {
+               id: uuidv4(),
+               description: 'read a book ',
+               status: 0,
+            },
+            {
+               id: uuidv4(),
+               description: 'watch a movie',
+               status: 1,
+            },
+            {
+               id: uuidv4(),
+               description: 'do nothing!',
+               status: 1,
+            },
+            {
+               id: uuidv4(),
+               description: 'read a story',
+               status: 0,
+            },
+            {
+               id: uuidv4(),
+               description: 'run',
+               status: 0,
+            },
+            {
+               id: uuidv4(),
+               description: 'lola lita',
+               status: 1,
+            },
+            {
+               id: uuidv4(),
+               description: 'really?',
+               status: 0,
+            },
          ],
          addTodo: (description) => {
             const id = uuidv4();
