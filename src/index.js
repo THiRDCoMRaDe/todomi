@@ -97,30 +97,28 @@ class App extends React.Component {
             {
                version: '1.0',
                date: '1593718200',
-               details:
-                  "We are super excited to announce Changefeed v2! We spent the last six months iterating and testing these features, and today they're finally ready to be used by all of you",
+               details: 'First release',
                features: [
                   {
                      type: {
-                        text: 'New',
+                        text: 'new',
                         id: 1,
                      },
-                     list: ['Mystery feature #1', 'Mystery feature #2', 'Mystery feature #3'],
+                     list: ['Add Todo', 'Update Todo', 'Remove Todo'],
                   },
                ],
             },
             {
                version: '1.1',
-               date: '1593908200',
-               details:
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+               date: '1595755798',
+               details: 'Update codebase to improve UX',
                features: [
                   {
                      type: {
-                        text: 'New',
-                        id: 1,
+                        text: 'improved',
+                        id: 2,
                      },
-                     list: ['Mystery feature #4', 'Mystery feature #5', 'Mystery feature #6'],
+                     list: ['Conditional rendering for each list to show warning message'],
                   },
                ],
             },

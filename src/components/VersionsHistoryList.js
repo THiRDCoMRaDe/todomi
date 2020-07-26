@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import VersionHistory from './VersionHistory';
 import { VhConsumer } from '../contexts/versionHistory';
+import moment from 'moment';
 
 const VersionsHistoryList = (props) => {
    const { match } = props;
@@ -25,7 +26,7 @@ const VersionsHistoryList = (props) => {
    );
 };
 export default VersionsHistoryList;
-
+/*console.log(moment().unix());*/
 // add anchor for copy specific update in card (use some third party lib for copy to clipboard by clicking),
 // separate copy feature to hoc or render prop component to use every where
 // showing only in one place

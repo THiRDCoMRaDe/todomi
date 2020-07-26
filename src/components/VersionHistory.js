@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineLink, AiFillCheckSquare } from 'react-icons/ai';
 import moment from 'moment';
 import Clipboard from 'clipboard';
+
 const VersionHistory = (props) => {
    const { update, children } = props;
    const { version, date, details, features } = update ? update : {};
@@ -37,7 +38,7 @@ class Template extends React.Component {
                   {features.map((feature) => (
                      <ul className={'features-list'} key={feature.type.id}>
                         <span className={`features-list-title features-list-title--${feature.type.text}`}>
-                           {feature.type.text}
+                           {feature.type.text.toUpperCase()}
                         </span>
                         {feature.list.map((item) => (
                            <li className={'features-item'} key={item}>
