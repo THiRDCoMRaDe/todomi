@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { AiOutlineLink, AiFillCheckSquare } from 'react-icons/ai';
 import moment from 'moment';
 import Clipboard from 'clipboard';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const VersionHistory = (props) => {
    const { update, children } = props;
@@ -22,13 +24,38 @@ class Template extends React.Component {
       });
    }
    render() {
+      const notify = () =>
+         toast('Link copied to clipboard!', {
+            position: 'bottom-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+         });
       const { version, date, details, features, children } = this.props;
       return (
          <div className={'version-history-wrapper'}>
             <div className={'version-history-header'}>
                <div className={'version-history-sub-header'}>
                   <h2 className={'version-history-title'}>v{version}</h2>
-                  {children && children.link && <AiOutlineLink className={'version-history-copy-icon'} id={'copy'} />}
+                  {children && children.link && (
+                     <>
+                        <AiOutlineLink className={'version-history-copy-icon'} onClick={notify} id={'copy'} />
+                        <ToastContainer
+                           position="bottom-right"
+                           autoClose={2000}
+                           hideProgressBar={false}
+                           newestOnTop={false}
+                           closeOnClick
+                           rtl={false}
+                           pauseOnFocusLoss
+                           draggable
+                           pauseOnHover
+                        />
+                     </>
+                  )}
                </div>
                <span className={'version-history-date'}>{moment(date * 1000).format('MMM Do, YYYY')}</span>
             </div>

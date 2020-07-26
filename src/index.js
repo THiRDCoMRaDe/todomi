@@ -120,6 +120,13 @@ class App extends React.Component {
                      },
                      list: ['Conditional rendering for each list to show warning message'],
                   },
+                  {
+                     type: {
+                        text: 'new',
+                        id: 1,
+                     },
+                     list: ['Show notification on copy link in individual update card'],
+                  },
                ],
             },
          ],
