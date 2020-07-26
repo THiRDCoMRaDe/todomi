@@ -2,8 +2,8 @@ import React from 'react';
 import { useLocation, Route, Redirect } from 'react-router-dom';
 import { TodoConsumer } from '../contexts/todoList';
 import TodoItem from './TodoItem';
-import NotFound from './NotFound';
 import { AiFillWarning } from 'react-icons/ai';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 const TodoList = () => {
    const location = useLocation().pathname.substr(1);
@@ -68,7 +68,11 @@ const TodoList = () => {
                      return null;
                }
             };
-            return <ul className={'todo-list'}>{renderSwitch()}</ul>;
+            return (
+               <PerfectScrollbar wheelSpeed={5} className={'todo-wrapper--scroll'}>
+                  <ul className={'todo-list'}>{renderSwitch()}</ul>
+               </PerfectScrollbar>
+            );
          }}
       </TodoConsumer>
    );

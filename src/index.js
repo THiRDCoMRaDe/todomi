@@ -9,11 +9,9 @@ import { TodoProvider } from './contexts/todoList';
 import { VhConsumer, VhProvider } from './contexts/versionHistory';
 
 import Header from './components/Header';
-import VersionsHistoryList from './components/VersionsHistoryList';
 import VersionHistory from './components/VersionHistory';
-// import TodoApp from './components/TodoApp';
 
-const VersionsHistory = React.lazy(() => import('./components/VersionsHistoryList'));
+const VersionsHistoryList = React.lazy(() => import('./components/VersionsHistoryList'));
 const TodoApp = React.lazy(() => import('./components/TodoApp'));
 const NotFound = React.lazy(() => import('./components/NotFound'));
 
@@ -97,7 +95,7 @@ class App extends React.Component {
             {
                version: '1.0',
                date: '1593718200',
-               details: 'First release',
+               details: '🚀 First release',
                features: [
                   {
                      type: {
@@ -125,7 +123,10 @@ class App extends React.Component {
                         text: 'new',
                         id: 1,
                      },
-                     list: ['Show notification on copy link in individual update card'],
+                     list: [
+                        'Show notification on copy link in individual update card',
+                        "Add doubleClick functionality to each item's input",
+                     ],
                   },
                ],
             },

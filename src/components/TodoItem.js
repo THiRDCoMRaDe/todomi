@@ -80,8 +80,9 @@ const Template = (props) => {
          <input
             className={'item__input'}
             type="text"
-            disabled={!editable}
+            readOnly={!editable}
             value={description}
+            onDoubleClick={() => handleToggleEdit()}
             onChange={handleTodoChange}
             onKeyUp={(e) => {
                e.keyCode === 13 && handleUpdateTodo({ id, description });

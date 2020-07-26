@@ -4,7 +4,6 @@ import { AiOutlineLink, AiFillCheckSquare } from 'react-icons/ai';
 import moment from 'moment';
 import Clipboard from 'clipboard';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 const VersionHistory = (props) => {
    const { update, children } = props;

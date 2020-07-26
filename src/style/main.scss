@@ -1,5 +1,7 @@
 @import './variables';
 @import './releases-info';
+@import '~react-perfect-scrollbar/dist/css/styles.min.css';
+@import '~react-toastify/dist/ReactToastify.min.css';
 * {
    font-family: 'Roboto', sans-serif;
 }
@@ -230,6 +232,9 @@ body {
             cursor: auto;
             background-color: $darkBlack;
          }
+         &[readonly] {
+            background-color: $darkBlack;
+         }
       }
    }
    .msg {
@@ -249,4 +254,6 @@ body {
          font-weight: 300;
       }
    }
+}
+.todo-wrapper--scroll {
 }
