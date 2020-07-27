@@ -65,6 +65,7 @@ class App extends React.Component {
                status: 0,
             },
          ],
+         tempList: [],
          addTodo: (description) => {
             const id = uuidv4();
             this.setState(({ todoContext }) => ({
@@ -121,6 +122,33 @@ class App extends React.Component {
                         return todo;
                      }
                   }),
+               },
+            }));
+         },
+         saveList: () => {
+            this.setState(({ todoContext }) => ({
+               todoContext: {
+                  ...todoContext,
+                  tempList: todoContext.todoList,
+               },
+            }));
+         },
+         restoreList: () => {
+            this.setState(({ todoContext }) => ({
+               todoContext: {
+                  ...todoContext,
+                  todoList: todoContext.tempList,
+               },
+            }));
+         },
+         filterTodo: (text) => {
+            if (!this.state.todoContext.tempList.length) {
+               this.state.todoContext.saveList();
+            }
+            this.setState(({ todoContext }) => ({
+               todoContext: {
+                  ...todoContext,
+                  todoList: todoContext.todoList.filter((todo) => todo.description.includes(text)),
                },
             }));
          },

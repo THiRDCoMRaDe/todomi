@@ -184,9 +184,15 @@ body {
       &:not(:last-child) {
          border-bottom: 2px solid $lightBlack;
       }
+      &:hover .item__icon--edit-off,
+      &:hover .item__icon--delete {
+         opacity: 1;
+         pointer-events: auto;
+      }
       &__icon {
          cursor: pointer;
          transition: all 0.2s;
+
          &--check-on {
             fill: $green;
             &:hover {
@@ -206,12 +212,18 @@ body {
             }
          }
          &--edit-off {
+            pointer-events: none;
+            opacity: 0;
+            transition: 0.5s;
             fill: $lightBluishGrey;
             &:hover {
                fill: darken($lightBluishGrey, 10);
             }
          }
          &--delete {
+            transition: 0.5s;
+            pointer-events: none;
+            opacity: 0;
             fill: $lightBluishGrey;
             &:hover {
                fill: darken($lightBluishGrey, 10);
@@ -234,6 +246,7 @@ body {
          }
          &[readonly] {
             background-color: $darkBlack;
+            cursor: pointer;
          }
       }
    }
@@ -258,6 +271,7 @@ body {
 .todo-wrapper--scroll {
    height: 500px;
    margin-top: 15px;
+   border-radius: 3px;
 }
 .ps__thumb-y {
    background-color: darken($darkBlack, 4);

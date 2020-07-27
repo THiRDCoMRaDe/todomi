@@ -3,6 +3,7 @@ import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import { TodoConsumer } from '../contexts/todoList';
 import TodoNav from './TodoNav';
+import Search from './Search';
 
 class TodoApp extends React.Component {
    state = {
@@ -23,6 +24,7 @@ class TodoApp extends React.Component {
 const Template = ({ addTodo, location }) => (
    <>
       <TodoNav />
+      <Search />
       {location !== 'completed' && <AddTodo addTodo={addTodo} />}
       <TodoList />
    </>

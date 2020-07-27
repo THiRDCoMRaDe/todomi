@@ -1,16 +1,17 @@
 .releases-info-title,
 .releases-info-title-link {
-  color: $white;
+  color: $lightBluishGrey;
   font-weight: 500;
   font-size: 22px;
   margin: 40px 0;
   display: block;
+  transition: .5s;
 }
 
 .releases-info-title-link {
   text-decoration: none;
   &:hover{
-    color: #d7d7d7;
+    color: $purple;
   }
 }
 
