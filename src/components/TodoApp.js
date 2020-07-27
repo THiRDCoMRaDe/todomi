@@ -3,7 +3,6 @@ import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import todoContext, { TodoConsumer } from '../contexts/todoList';
 import TodoNav from './TodoNav';
-import Search from './Search';
 
 class TodoApp extends React.Component {
    state = {
@@ -30,7 +29,6 @@ TodoApp.contextType = todoContext;
 const Template = ({ addTodo, location }) => (
    <>
       <TodoNav />
-      <Search />
       {location !== 'completed' && <AddTodo addTodo={addTodo} />}
       <TodoList />
    </>

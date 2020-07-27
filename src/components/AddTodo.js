@@ -6,6 +6,7 @@ class AddTodo extends React.Component {
    state = {
       newDescription: '',
       error: null,
+      inputFocused: false,
    };
    handleNewDescriptionChange = (e) => {
       const newDescription = e.target.value;
@@ -22,14 +23,21 @@ class AddTodo extends React.Component {
          newDescription: '',
       });
    };
+   inputFocusHandler = (state) => {
+      this.setState({
+         inputFocused: state,
+      });
+   };
    render() {
-      const { newDescription, error } = this.state;
+      const { newDescription, error, inputFocused } = this.state;
       return (
          <Template
             value={newDescription}
             error={error}
+            focused={inputFocused}
             handleFormSubmit={this.handleFormSubmit}
             handleChange={this.handleNewDescriptionChange}
+            inputFocusHandler={this.inputFocusHandler}
          />
       );
    }
@@ -38,9 +46,9 @@ AddTodo.propTypes = {
    addTodo: PropTypes.func.isRequired,
 };
 const Template = (props) => {
-   const { value, handleFormSubmit, handleChange, error } = props;
+   const { value, handleFormSubmit, handleChange, inputFocusHandler, error, focused } = props;
    return (
-      <form className={`add-todo ${!!error ? 'add-todo--error' : ''}`} onSubmit={handleFormSubmit} id={'addForm'}>
+      <form className={`add-todo ${focused && !!error ? 'add-todo--error' : ''}`} onSubmit={handleFormSubmit} id={'addForm'}>
          <div className={'add-todo__wrapper'}>
             <input
                className={'add-todo__input'}
@@ -48,12 +56,18 @@ const Template = (props) => {
                onChange={handleChange}
                type="text"
                placeholder={'Enter a task ...'}
+               onBlur={() => {
+                  inputFocusHandler(false);
+               }}
+               onFocus={() => {
+                  inputFocusHandler(true);
+               }}
             />
             <button className={'add-todo__button'} form={'addForm'} disabled={!value}>
                ADD
             </button>
          </div>
-         {!!error && <span className={'add-todo__error'}>{error}</span>}
+         {focused && !!error && <span className={'add-todo__error'}>{error}</span>}
       </form>
    );
 };
