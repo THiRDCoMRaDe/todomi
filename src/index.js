@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import 'sanitize.css';
 import './style/main.scss';
 
-import { TodoProvider } from './contexts/todoList';
+import todoContext, { TodoProvider } from './contexts/todoList';
 import { VhConsumer, VhProvider } from './contexts/versionHistory';
 
 import Header from './components/Header';
@@ -175,6 +175,7 @@ class App extends React.Component {
             if (!this.state.todoContext.tempList.length) {
                this.state.todoContext.saveList();
             }
+            this.state.todoContext.restoreList();
             this.setState(({ todoContext }) => ({
                todoContext: {
                   ...todoContext,

@@ -2,32 +2,33 @@ import React from 'react';
 import { TodoConsumer } from '../contexts/todoList';
 import isTextSelected from '../helpers/isTextSelected';
 import clearStorage from '../helpers/clearStorage';
+import debounce from '../helpers/debounce';
+import { css } from '@emotion/core';
+import BounceLoader from 'react-spinners/BounceLoader';
+
 window.addEventListener('load', clearStorage('oldSearchValue'));
+const override = css`
+   display: flex;
+   margin: 0 auto;
+   border-color: red;
+`;
 class Search extends React.Component {
    state = {
       searchValue: '',
+      loader: false,
+   };
+   updateSearchValue = (event) => {
+      this.setState({
+         searchValue: event.target.value,
+         loader: true,
+      });
    };
    handleChange = (event, filterTodo, restoreList) => {
-      const value = !!event.target.value.length;
-      value ? filterTodo(event.target.value) : restoreList();
-      this.setState({
-         searchValue: event.target.value,
-      });
+      filterTodo(event.target.value);
       localStorage.setItem('oldSearchValue', this.state.searchValue);
-   };
-   handleKeyUp = (event, filterTodo, restoreList) => {
-      if (isTextSelected(event.target)) {
-         restoreList();
-         filterTodo(event.target.value);
-      }
-      if (event.keyCode === 8) {
-         restoreList();
-         filterTodo(event.target.value);
-      }
       this.setState({
-         searchValue: event.target.value,
+         loader: false,
       });
-      localStorage.setItem('oldSearchValue', this.state.searchValue);
    };
    componentDidMount() {
       this.setState({
@@ -40,17 +41,25 @@ class Search extends React.Component {
          <TodoConsumer>
             {({ saveList, restoreList, filterTodo }) => {
                return (
-                  <div className="search">
+                  <div className="search-input">
                      <input
                         type="text"
                         value={this.state.searchValue}
+                        placeholder={'Type to search ...'}
                         onChange={(e) => {
-                           this.handleChange(e, filterTodo, restoreList);
-                        }}
-                        onKeyUp={(e) => {
-                           this.handleKeyUp(e, filterTodo, restoreList);
+                           e.persist();
+                           if (!this.debouncedFn) {
+                              this.debouncedFn = debounce(() => {
+                                 this.handleChange(e, filterTodo, restoreList);
+                              }, 500);
+                           }
+                           this.debouncedFn();
+                           this.updateSearchValue(e);
                         }}
                      />
+                     <div className="search-input__icon">
+                        <BounceLoader size={20} color={'#7F5AF0'} loading={this.state.loader} />
+                     </div>
                   </div>
                );
             }}
