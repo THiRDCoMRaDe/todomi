@@ -25,7 +25,7 @@ class Template extends React.Component {
    render() {
       const notify = () =>
          toast('Link copied to clipboard!', {
-            position: 'bottom-right',
+            position: 'bottom-center',
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -43,7 +43,7 @@ class Template extends React.Component {
                      <>
                         <AiOutlineLink className={'version-history-copy-icon'} onClick={notify} id={'copy'} />
                         <ToastContainer
-                           position="bottom-right"
+                           position="bottom-center"
                            autoClose={2000}
                            hideProgressBar={false}
                            newestOnTop={false}

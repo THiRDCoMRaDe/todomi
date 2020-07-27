@@ -65,6 +65,7 @@ class App extends React.Component {
                status: 0,
             },
          ],
+         tempList: [],
          addTodo: (description) => {
             const id = uuidv4();
             this.setState(({ todoContext }) => ({
@@ -72,6 +73,14 @@ class App extends React.Component {
                   ...todoContext,
                   todoList: [
                      ...todoContext.todoList,
+                     {
+                        id: id,
+                        description,
+                        status: 0,
+                     },
+                  ],
+                  tempList: [
+                     ...todoContext.tempList,
                      {
                         id: id,
                         description,
@@ -86,6 +95,7 @@ class App extends React.Component {
                todoContext: {
                   ...todoContext,
                   todoList: todoContext.todoList.filter((todo) => todo.id !== id),
+                  tempList: todoContext.tempList.filter((todo) => todo.id !== id),
                },
             }));
          },
@@ -94,6 +104,16 @@ class App extends React.Component {
                todoContext: {
                   ...todoContext,
                   todoList: todoContext.todoList.map((todo) => {
+                     if (todo.id === id) {
+                        return {
+                           ...todo,
+                           status: todo.status === 1 ? 0 : 1,
+                        };
+                     } else {
+                        return todo;
+                     }
+                  }),
+                  tempList: todoContext.tempList.map((todo) => {
                      if (todo.id === id) {
                         return {
                            ...todo,
@@ -121,6 +141,44 @@ class App extends React.Component {
                         return todo;
                      }
                   }),
+                  tempList: todoContext.tempList.map((todo) => {
+                     if (todo.id === id) {
+                        return {
+                           ...todo,
+                           id,
+                           description,
+                        };
+                     } else {
+                        return todo;
+                     }
+                  }),
+               },
+            }));
+         },
+         saveList: () => {
+            this.setState(({ todoContext }) => ({
+               todoContext: {
+                  ...todoContext,
+                  tempList: todoContext.todoList,
+               },
+            }));
+         },
+         restoreList: () => {
+            this.setState(({ todoContext }) => ({
+               todoContext: {
+                  ...todoContext,
+                  todoList: todoContext.tempList,
+               },
+            }));
+         },
+         filterTodo: (text) => {
+            if (!this.state.todoContext.tempList.length) {
+               this.state.todoContext.saveList();
+            }
+            this.setState(({ todoContext }) => ({
+               todoContext: {
+                  ...todoContext,
+                  todoList: todoContext.todoList.filter((todo) => todo.description.includes(text)),
                },
             }));
          },
