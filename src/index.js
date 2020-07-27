@@ -79,6 +79,14 @@ class App extends React.Component {
                         status: 0,
                      },
                   ],
+                  tempList: [
+                     ...todoContext.tempList,
+                     {
+                        id: id,
+                        description,
+                        status: 0,
+                     },
+                  ],
                },
             }));
          },
@@ -87,6 +95,7 @@ class App extends React.Component {
                todoContext: {
                   ...todoContext,
                   todoList: todoContext.todoList.filter((todo) => todo.id !== id),
+                  tempList: todoContext.tempList.filter((todo) => todo.id !== id),
                },
             }));
          },
@@ -104,6 +113,16 @@ class App extends React.Component {
                         return todo;
                      }
                   }),
+                  tempList: todoContext.tempList.map((todo) => {
+                     if (todo.id === id) {
+                        return {
+                           ...todo,
+                           status: todo.status === 1 ? 0 : 1,
+                        };
+                     } else {
+                        return todo;
+                     }
+                  }),
                },
             }));
          },
@@ -112,6 +131,17 @@ class App extends React.Component {
                todoContext: {
                   ...todoContext,
                   todoList: todoContext.todoList.map((todo) => {
+                     if (todo.id === id) {
+                        return {
+                           ...todo,
+                           id,
+                           description,
+                        };
+                     } else {
+                        return todo;
+                     }
+                  }),
+                  tempList: todoContext.tempList.map((todo) => {
                      if (todo.id === id) {
                         return {
                            ...todo,

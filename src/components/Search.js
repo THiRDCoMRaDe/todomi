@@ -1,5 +1,6 @@
 import React from 'react';
 import { TodoConsumer } from '../contexts/todoList';
+import isTextSelected from '../helpers/isTextSelected';
 function once(fn, context) {
    let result;
 
@@ -9,12 +10,13 @@ function once(fn, context) {
          result = fn.apply(context || this, arguments);
          fn = null;
       }
-
       return result;
    };
 }
+
 class Search extends React.Component {
    search = () => {};
+
    render() {
       return (
          <TodoConsumer>
@@ -26,9 +28,13 @@ class Search extends React.Component {
                         onChange={(e) => {
                            const value = !!e.target.value.length;
                            value ? filterTodo(e.target.value) : restoreList();
-                           console.log('change');
                         }}
+                        onFocus={(e) => {}}
                         onKeyUp={(e) => {
+                           if (isTextSelected(e.target)) {
+                              restoreList();
+                              filterTodo(e.target.value);
+                           }
                            if (e.keyCode === 8) {
                               restoreList();
                               filterTodo(e.target.value);
