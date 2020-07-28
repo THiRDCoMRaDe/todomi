@@ -191,12 +191,12 @@ body {
    width: 85px;
    padding: 0 7px 0 12px;
    height: 25px;
-   border-radius: 3px;
+   border-radius: 2px;
    border: 1px solid $purple;
    box-sizing: border-box;
    &__text {
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 500;
       color: $purple;
       letter-spacing: 1px;
    }

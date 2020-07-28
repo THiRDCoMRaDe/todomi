@@ -68,25 +68,16 @@ class App extends React.Component {
          tempList: [],
          addTodo: (description) => {
             const id = uuidv4();
+            const newItem = {
+               id: id,
+               description,
+               status: 0,
+            };
             this.setState(({ todoContext }) => ({
                todoContext: {
                   ...todoContext,
-                  todoList: [
-                     ...todoContext.todoList,
-                     {
-                        id: id,
-                        description,
-                        status: 0,
-                     },
-                  ],
-                  tempList: [
-                     ...todoContext.tempList,
-                     {
-                        id: id,
-                        description,
-                        status: 0,
-                     },
-                  ],
+                  todoList: [...todoContext.todoList, newItem],
+                  tempList: todoContext.tempList.length ? [...todoContext.tempList, newItem] : [],
                },
             }));
          },
