@@ -299,7 +299,7 @@ body {
             transition: 0.5s;
             fill: $lightBluishGrey;
             &:hover {
-               fill: darken($lightBluishGrey, 10);
+               fill: $yellow;
             }
          }
          &--delete {
@@ -308,7 +308,7 @@ body {
             opacity: 0;
             fill: $lightBluishGrey;
             &:hover {
-               fill: darken($lightBluishGrey, 10);
+               fill: $red;
             }
          }
       }
