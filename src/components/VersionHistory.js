@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Tooltip from './Tooltip';
+import debounce from '../helpers/debounce';
 import { AiOutlineLink, AiFillCheckSquare } from 'react-icons/ai';
 import moment from 'moment';
 import Clipboard from 'clipboard';
@@ -33,6 +35,7 @@ class Template extends React.Component {
             draggable: true,
             progress: undefined,
          });
+
       const { version, date, details, features, children } = this.props;
       return (
          <div className={'version-history-wrapper'}>
@@ -40,8 +43,10 @@ class Template extends React.Component {
                <div className={'version-history-sub-header'}>
                   <h2 className={'version-history-title'}>v{version}</h2>
                   {children && children.link && (
-                     <>
-                        <AiOutlineLink className={'version-history-copy-icon'} onClick={notify} id={'copy'} />
+                     <span>
+                        <Tooltip text={'Click to copy address'}>
+                           <AiOutlineLink className={'version-history-copy-icon'} onClick={notify} id={'copy'} />
+                        </Tooltip>
                         <ToastContainer
                            position="bottom-center"
                            autoClose={2000}
@@ -53,7 +58,7 @@ class Template extends React.Component {
                            draggable
                            pauseOnHover
                         />
-                     </>
+                     </span>
                   )}
                </div>
                <span className={'version-history-date'}>{moment(date * 1000).format('MMM Do, YYYY')}</span>
