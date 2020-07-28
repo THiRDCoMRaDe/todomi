@@ -1,0 +1,65 @@
+.ReactModalPortal > .ReactModal__Overlay {
+   opacity: 0;
+}
+.ReactModalPortal .ReactModal__Overlay{
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   transition: opacity 200ms ease-in-out;
+  background-color: rgba($lightBluishGrey,.75) !important;
+}
+.ReactModalPortal .ReactModal__Overlay--after-open{
+   opacity: 1;
+}
+.ReactModalPortal .ReactModal__Overlay--before-close{
+   opacity: 0;
+}
+
+.modal{
+   background-color: $darkBlack;
+   text-align: center;
+   color: #fff;
+   outline: none;
+   padding: 32px;
+   max-width: 30rem;
+  border-radius: 3px;
+&__title{
+      margin: 0 0 16px 0;
+   }
+&__button-wrapper{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  .btn{
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    line-height: normal;
+    -webkit-appearance: none;
+    font-weight: 500;
+    cursor: pointer;
+    &:first-letter{
+      text-transform: uppercase;
+    }
+    &:first-child{
+      margin-right: 10px;
+    }
+    &::-moz-focus-inner {
+      border: 0;
+      padding: 0;
+      outline: none;
+    }
+    &:focus{
+      outline: none;
+    }
+    &--danger{
+      background-color: $red;
+      color: $white
+    }
+    &--secondary{
+      background-color: $lightBluishGrey;
+      color: $darkBlack
+    }
+  }
+}
+}

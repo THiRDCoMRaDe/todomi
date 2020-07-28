@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { AiFillCheckSquare, AiTwotoneEdit, AiFillDelete } from 'react-icons/ai';
+import { ConfirmModal } from './Modal';
 
 class TodoItem extends React.Component {
    id = this.props.id;
@@ -8,6 +9,7 @@ class TodoItem extends React.Component {
    state = {
       description: this.description,
       editable: false,
+      modalOpen: false,
    };
    handleToggleStatus = () => {
       this.props.toggleStatus(this.id);
@@ -29,9 +31,12 @@ class TodoItem extends React.Component {
       this.props.updateTodo(update);
       this.handleToggleEdit();
    };
+   handleModalOpen = (state) => {
+      this.setState({ modalOpen: state });
+   };
    render() {
       const { status, id } = this.props;
-      const { description, editable } = this.state;
+      const { description, editable, modalOpen } = this.state;
       return (
          <Template
             id={id}
@@ -43,6 +48,8 @@ class TodoItem extends React.Component {
             handleTodoChange={this.handleTodoChange}
             handleUpdateTodo={this.handleUpdateTodo}
             editable={editable}
+            modalOpen={modalOpen}
+            handleModalOpen={this.handleModalOpen}
          />
       );
    }
@@ -66,7 +73,9 @@ const Template = (props) => {
       handleToggleEdit,
       handleTodoChange,
       handleUpdateTodo,
+      handleModalOpen,
       editable,
+      modalOpen,
    } = props;
    return (
       <>
@@ -102,8 +111,17 @@ const Template = (props) => {
             )}
          </span>
          <span className={'item__icon'}>
-            <AiFillDelete size={15} onClick={handleDelete} className={'item__icon--delete'} />
+            <AiFillDelete size={15} onClick={() => handleModalOpen(true)} className={'item__icon--delete'} />
          </span>
+         <ConfirmModal isOpen={modalOpen} handleConfirm={handleDelete} handleCancel={() => handleModalOpen(false)}>
+            {{
+               text: `Do you really want to delete "${description}" item?`,
+               confirmText: 'yes',
+               confirmBtnStyle: 'danger',
+               cancelText: 'no',
+               cancelBtnStyle: 'secondary',
+            }}
+         </ConfirmModal>
       </>
    );
 };
