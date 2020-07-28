@@ -215,6 +215,25 @@ class App extends React.Component {
                   },
                ],
             },
+            {
+               version: '1.2',
+               date: '1595923176',
+               details: 'Add search functionality',
+               features: [
+                  {
+                     type: {
+                        text: 'new',
+                        id: 1,
+                     },
+                     list: [
+                        'Add button for toggling search box',
+                        'keep state of search field on each category',
+                        'Use debounce method to reduce api calls',
+                        'keep syncing todo list (in case of add, edit or remove any item during search)',
+                     ],
+                  },
+               ],
+            },
          ],
       },
    };
