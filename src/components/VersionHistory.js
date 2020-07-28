@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Tooltip from './Tooltip';
-import debounce from '../helpers/debounce';
+import throttle from '../helpers/throttle';
 import { AiOutlineLink, AiFillCheckSquare } from 'react-icons/ai';
 import moment from 'moment';
 import Clipboard from 'clipboard';
 import { ToastContainer, toast } from 'react-toastify';
+import debounce from '../helpers/debounce';
 
 const VersionHistory = (props) => {
    const { update, children } = props;
@@ -45,7 +46,20 @@ class Template extends React.Component {
                   {children && children.link && (
                      <span>
                         <Tooltip text={'Click to copy address'}>
-                           <AiOutlineLink className={'version-history-copy-icon'} onClick={notify} id={'copy'} />
+                           <AiOutlineLink
+                              className={'version-history-copy-icon'}
+                              onClick={(e) => {
+                                 e.persist();
+                                 if (!this.debouncedFn) {
+                                    this.debouncedFn = throttle(() => {
+                                       notify();
+                                    }, 2000);
+                                 }
+                                 this.debouncedFn();
+                                 /*notify();*/
+                              }}
+                              id={'copy'}
+                           />
                         </Tooltip>
                         <ToastContainer
                            position="bottom-center"
