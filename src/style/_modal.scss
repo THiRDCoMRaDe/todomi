@@ -6,7 +6,6 @@
    display: flex;
    justify-content: center;
    transition: opacity 200ms ease-in-out;
-  background-color: rgba($lightBluishGrey,.75) !important;
 }
 .ReactModalPortal .ReactModal__Overlay--after-open{
    opacity: 1;
@@ -16,9 +15,7 @@
 }
 
 .modal{
-   background-color: $darkBlack;
    text-align: center;
-   color: #fff;
    outline: none;
    padding: 32px;
    max-width: 30rem;

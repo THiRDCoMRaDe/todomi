@@ -1,0 +1,17 @@
+.svg-container{
+  width: 38px;
+  height: 38px;
+  position: relative;
+  border-radius: 3px;
+  margin-top: 8px;
+  transition: .7s;
+  cursor:pointer;
+}
+.svg-animation {
+  width: 21px;
+  height: 27px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}

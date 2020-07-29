@@ -1,6 +1,7 @@
 @import './variables';
 @import './releases-info';
 @import './modal';
+@import './toggleTheme';
 @import '~react-perfect-scrollbar/dist/css/styles.min.css';
 @import '~react-toastify/dist/ReactToastify.min.css';
 * {
@@ -8,7 +9,7 @@
 }
 
 body {
-   background-color: $lightBlack;
+   transition: 0.7s;
 }
 
 .wrapper {
@@ -19,7 +20,8 @@ body {
 
 .header {
    margin: 40px 0;
-
+   display: flex;
+   justify-content: space-between;
    &__logo {
       display: inline-block;
       font-size: 36px;
@@ -40,12 +42,13 @@ body {
          padding: 0;
          font-size: inherit;
          font-weight: inherit;
+         transition: 0.7s;
       }
    }
 
    &__link {
       font-size: 12px;
-      color: $lightBluishGrey;
+      transition: 0.7s;
       font-style: italic;
       font-weight: 500;
       text-decoration: none;
@@ -73,47 +76,19 @@ body {
       width: 100%;
    }
    &__input {
-      background-color: $darkBlack;
       outline: none;
       border: none;
       height: 100%;
       width: 285px;
-      color: $white;
       font-size: 14px;
       font-weight: 500;
       padding: 15px;
       border-radius: 3px;
+      transition: 0.7s;
       &:focus,
       &:active {
          text-decoration: inherit !important;
          outline: none;
-      }
-      &::-webkit-input-placeholder {
-         /* WebKit, Blink, Edge */
-         color: #ffffff;
-      }
-      &:-moz-placeholder {
-         /* Mozilla Firefox 4 to 18 */
-         color: #ffffff;
-         opacity: 1;
-      }
-      &::-moz-placeholder {
-         /* Mozilla Firefox 19+ */
-         color: #ffffff;
-         opacity: 1;
-      }
-      &:-ms-input-placeholder {
-         /* Internet Explorer 10-11 */
-         color: #ffffff;
-      }
-      &::-ms-input-placeholder {
-         /* Microsoft Edge */
-         color: #ffffff;
-      }
-
-      &::placeholder {
-         /* Most modern browsers support this now. */
-         color: #ffffff;
       }
    }
    &__error {
@@ -126,20 +101,17 @@ body {
       height: 10px;
    }
    &__button {
-      background-color: $purple;
       width: 50px;
       height: 100%;
       outline: none;
       border: none;
-      color: $white;
       font-size: 16px;
       font-weight: 500;
       cursor: pointer;
       border-radius: 3px;
+      transition: 0.7s;
       &:disabled {
-         background-color: lighten($lightBlack, 10);
          cursor: auto;
-         color: darken($lightBlack, 10);
       }
    }
    &--error {
@@ -177,71 +149,54 @@ body {
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
-      color: $lightBluishGrey;
-      &--active {
-         color: $purple;
-      }
+      transition: 0.7s;
    }
 }
 .search-btn {
    display: flex;
    cursor: pointer;
-   background-color: $lightBlack;
+   background-color: transparent;
    justify-content: space-between;
    align-items: center;
    width: 85px;
    padding: 0 7px 0 12px;
    height: 25px;
    border-radius: 2px;
-   border: 1px solid $purple;
+   border: 1px solid transparent;
    box-sizing: border-box;
+   transition: 0.7s;
    &__text {
       font-size: 14px;
       font-weight: 500;
-      color: $purple;
       letter-spacing: 1px;
+      transition: 0.7s;
    }
    &__icon {
       width: 12px;
       height: 12px;
-      fill: $purple;
+      transition: 0.7s;
    }
    &--open {
-      background-color: $purple;
       .search-btn__text {
-         color: $darkBlack;
          font-weight: 500;
-      }
-      .search-btn__icon {
-         fill: $darkBlack;
       }
    }
 }
 .search-box {
    width: 100%;
-   background-color: $darkBlack;
    padding: 15px;
    border-radius: 3px;
+   transition: 0.7s;
 }
 .search-input {
    position: relative;
    input {
       width: 100%;
       height: 40px;
-      background-color: $darkBlack;
       outline: none;
       border: none;
       font-size: 16px;
-      color: $white;
-      &::-webkit-input-placeholder {
-         color: $lightBluishGrey;
-      }
-      &:-ms-input-placeholder {
-         color: $lightBluishGrey;
-      }
-      &::placeholder {
-         color: $lightBluishGrey;
-      }
+      transition: 0.7s;
    }
    &__icon {
       position: absolute;
@@ -253,19 +208,20 @@ body {
 
 .todo-list {
    width: 100%;
-   background-color: $darkBlack;
    margin: 0;
    padding: 15px;
    border-radius: 3px;
    list-style: none;
+   transition: 0.7s;
    .item {
       width: 100%;
       height: 65px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: 0.7s;
       &:not(:last-child) {
-         border-bottom: 2px solid $lightBlack;
+         border-bottom: 2px solid transparent;
       }
       &:hover .item__icon--edit-off,
       &:hover .item__icon--delete {
@@ -319,16 +275,13 @@ body {
          border: none;
          outline: none;
          font-size: 16px;
-         color: $white;
          font-weight: 500;
          padding: 0 10px;
-         background-color: $lightBlack;
+         transition: 0.7s;
          &:disabled {
             cursor: auto;
-            background-color: $darkBlack;
          }
          &[readonly] {
-            background-color: $darkBlack;
             cursor: pointer;
          }
       }
@@ -359,3 +312,6 @@ body {
 .ps__thumb-y {
    background-color: darken($darkBlack, 4);
 }
+
+@import 'themeLight';
+@import 'themeDark';

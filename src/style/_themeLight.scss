@@ -1,0 +1,174 @@
+.light {
+  background-color: $darkWhite;
+
+  .header {
+    &__logo {
+      h1 {
+        color: $lightBlack
+      }
+    }
+
+    &__link {
+      color: $darkBluishGrey;
+    }
+  }
+
+  .navigation__link {
+    color: $darkBluishGrey;
+
+    &--active {
+      color: $darkPurple;
+    }
+  }
+
+  .search-btn {
+    border-color: $darkPurple;
+
+    &__text {
+      color: $darkPurple;
+    }
+
+    &__icon {
+      fill: $darkPurple;
+    }
+
+    &--open {
+      background-color: $darkPurple;
+
+      .search-btn__text {
+        color: $white;
+      }
+
+      .search-btn__icon {
+        fill: $white;
+      }
+    }
+  }
+  .search-box{
+    background-color: $white;
+  }
+  .search-input {
+    input {
+      background-color: $white;
+      color: $lightBlack;
+      &::-webkit-input-placeholder {
+        color: $lightBlack;
+      }
+      &:-moz-placeholder {
+        color: $lightBlack;
+        opacity: 1;
+      }
+      &::-moz-placeholder {
+        color: $lightBlack;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        color: $lightBlack;
+      }
+      &::-ms-input-placeholder {
+        color: $lightBlack;
+      }
+
+      &::placeholder {
+        color: $lightBlack;
+      }
+    }
+  }
+  .add-todo {
+    &__input {
+      background-color: $white;
+      color: $lightBlack;
+      &::-webkit-input-placeholder {
+        color: $white;
+      }
+      &:-moz-placeholder {
+        color: $lightBlack;
+        opacity: 1;
+      }
+      &::-moz-placeholder {
+        color: $lightBlack;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        color: $lightBlack;
+      }
+      &::-ms-input-placeholder {
+        color: $lightBlack;
+      }
+
+      &::placeholder {
+        color: $lightBlack;
+      }
+    }
+    &__button {
+      background-color: $darkPurple;
+      color: $white;
+      &:disabled {
+        background-color: lighten($darkBlack, 70);
+        color: lighten($darkBlack, 50);
+      }
+    }
+  }
+  .todo-list{
+    background-color: $white;
+    .item {
+      &:not(:last-child) {
+        border-bottom-color: $darkWhite;
+      }
+      &__input {
+        color: $lightBlack;
+        background-color: $darkWhite;
+        &:disabled {
+          background-color: $white;
+        }
+        &[readonly] {
+          background-color: $white;
+        }
+      }
+    }
+  }
+  .svg-container {
+    background-color: $white;
+  }
+
+  .svg-animation svg path {
+    fill: $lightBlack;
+  }
+
+  .svg-animation svg g g path {
+    stroke: $lightBlack;
+  }
+  .releases-info-title,
+  .releases-info-title-link {
+    color: $darkBluishGrey;
+  }
+  .version-history-wrapper {
+    background-color: $white;
+    color: $lightBlack;
+  }
+  .version-history-title {
+    color: $lightBlack;
+  }
+  .version-history-date {
+    color: $darkBluishGrey;
+  }
+  .version-history-copy-icon {
+    fill: $darkPurple;
+    &:hover {
+      fill: darken($darkPurple, 10);
+    }
+  }
+  .version-history-header{
+    border-bottom: 2px solid $darkWhite;
+  }
+  .version-history-details {
+    border-bottom: 2px solid $darkWhite;
+  }
+  .ReactModalPortal .ReactModal__Overlay{
+    background-color: rgba($darkBluishGrey,.75) !important;
+  }
+  .modal{
+    background-color: $white;
+    color: $lightBlack;
+  }
+}

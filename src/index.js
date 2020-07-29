@@ -7,6 +7,7 @@ import './style/main.scss';
 
 import todoContext, { TodoProvider } from './contexts/todoList';
 import { VhConsumer, VhProvider } from './contexts/versionHistory';
+import { ThemeProvider } from './contexts/theme';
 
 import Header from './components/Header';
 import VersionHistory from './components/VersionHistory';
@@ -236,65 +237,80 @@ class App extends React.Component {
             },
          ],
       },
+      themeContext: {
+         theme: 'light',
+         switchTheme: () => {
+            this.setState(({ themeContext }) => ({
+               themeContext: {
+                  ...themeContext,
+                  theme: themeContext.theme === 'light' ? 'dark' : 'light',
+               },
+            }));
+         },
+      },
    };
 
    render() {
       return (
          <div className={'wrapper'}>
             <Router>
-               <TodoProvider value={this.state.todoContext}>
-                  <VhProvider value={this.state.vhContext}>
-                     <Header />
-                     <React.Suspense fallback={<h1>Loading...</h1>}>
-                        <Switch>
-                           <Route path={'/'} exact key={'all'} component={TodoApp} />
-                           <Route path={'/completed'} key={'completed'} component={TodoApp} />
-                           <Route path={'/incomplete'} key={'incomplete'} component={TodoApp} />
-                           <Route path="/releases-info" exact component={VersionsHistoryList} />
-                           <Route
-                              path="/releases-info/:id/"
-                              render={(props) => (
-                                 <VhConsumer>
-                                    {({ updateLogs }) => {
-                                       const update = updateLogs.find((update) => update.version === props.match.params.id);
-                                       return update ? (
-                                          <>
-                                             <Link className={'releases-info-title-link'} to={'/releases-info'}>
-                                                {'<'} Back to releases
-                                             </Link>
-                                             <VersionHistory update={update} {...props}>
-                                                {{
-                                                   link: update.version,
-                                                }}
-                                             </VersionHistory>
-                                          </>
-                                       ) : (
-                                          <Redirect
-                                             to={{
-                                                pathname: '/404',
-                                                state: { from: props.location },
-                                             }}
-                                          />
-                                       );
-                                    }}
-                                 </VhConsumer>
-                              )}
-                           />
-                           <Route path="/404" component={NotFound} />
-                           <Route
-                              render={({ location }) => (
-                                 <Redirect
-                                    to={{
-                                       pathname: '/404',
-                                       state: { from: location },
-                                    }}
+               <ThemeProvider value={this.state.themeContext}>
+                  <TodoProvider value={this.state.todoContext}>
+                     <VhProvider value={this.state.vhContext}>
+                        <div>
+                           <Header />
+                           <React.Suspense fallback={<h1>Loading...</h1>}>
+                              <Switch>
+                                 <Route path={'/'} exact key={'all'} component={TodoApp} />
+                                 <Route path={'/completed'} key={'completed'} component={TodoApp} />
+                                 <Route path={'/incomplete'} key={'incomplete'} component={TodoApp} />
+                                 <Route path="/releases-info" exact component={VersionsHistoryList} />
+                                 <Route
+                                    path="/releases-info/:id/"
+                                    render={(props) => (
+                                       <VhConsumer>
+                                          {({ updateLogs }) => {
+                                             const update = updateLogs.find((update) => update.version === props.match.params.id);
+                                             return update ? (
+                                                <>
+                                                   <Link className={'releases-info-title-link'} to={'/releases-info'}>
+                                                      {'<'} Back to releases
+                                                   </Link>
+                                                   <VersionHistory update={update} {...props}>
+                                                      {{
+                                                         link: update.version,
+                                                      }}
+                                                   </VersionHistory>
+                                                </>
+                                             ) : (
+                                                <Redirect
+                                                   to={{
+                                                      pathname: '/404',
+                                                      state: { from: props.location },
+                                                   }}
+                                                />
+                                             );
+                                          }}
+                                       </VhConsumer>
+                                    )}
                                  />
-                              )}
-                           />
-                        </Switch>
-                     </React.Suspense>
-                  </VhProvider>
-               </TodoProvider>
+                                 <Route path="/404" component={NotFound} />
+                                 <Route
+                                    render={({ location }) => (
+                                       <Redirect
+                                          to={{
+                                             pathname: '/404',
+                                             state: { from: location },
+                                          }}
+                                       />
+                                    )}
+                                 />
+                              </Switch>
+                           </React.Suspense>
+                        </div>
+                     </VhProvider>
+                  </TodoProvider>
+               </ThemeProvider>
             </Router>
          </div>
       );
