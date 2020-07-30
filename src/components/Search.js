@@ -39,7 +39,7 @@ class Search extends React.Component {
    render() {
       return (
          <TodoConsumer>
-            {({ saveList, restoreList, filterTodo }) => {
+            {({ restoreList, filterTodo }) => {
                return (
                   <div className="search-input">
                      <input
