@@ -2,58 +2,49 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { AiFillCheckSquare, AiTwotoneEdit, AiFillDelete } from 'react-icons/ai';
 import { ConfirmModal } from './Modal';
-
-class TodoItem extends React.Component {
-   id = this.props.id;
-   description = this.props.description;
-   state = {
-      description: this.description,
-      editable: false,
-      modalOpen: false,
+const TodoItem = (props) => {
+   /*const id = props.id;*/
+   const { status, id } = props;
+   const [description, setDescription] = React.useState(props.description);
+   const [editable, setEditable] = React.useState(false);
+   const [modalOpen, setModalOpen] = React.useState(false);
+   const handleToggleStatus = () => {
+      props.toggleStatus(id);
    };
-   handleToggleStatus = () => {
-      this.props.toggleStatus(this.id);
+   const handleDelete = () => {
+      props.removeTodo(id);
    };
-   handleDelete = () => {
-      this.props.removeTodo(this.id);
-   };
-   handleToggleEdit = () => {
-      this.setState(({ editable }) => ({
-         editable: !editable,
-      }));
-   };
-   handleTodoChange = (event) => {
-      this.setState({
-         description: event.target.value,
+   const handleToggleEdit = () => {
+      setEditable((prev) => {
+         return !prev;
       });
    };
-   handleUpdateTodo = (update) => {
-      this.props.updateTodo(update);
-      this.handleToggleEdit();
+   const handleTodoChange = (event) => {
+      setDescription(event.target.value);
    };
-   handleModalOpen = (state) => {
-      this.setState({ modalOpen: state });
+   const handleUpdateTodo = (update) => {
+      props.updateTodo(update);
+      handleToggleEdit();
    };
-   render() {
-      const { status, id } = this.props;
-      const { description, editable, modalOpen } = this.state;
-      return (
-         <Template
-            id={id}
-            description={description}
-            status={status}
-            handleToggleStatus={this.handleToggleStatus}
-            handleDelete={this.handleDelete}
-            handleToggleEdit={this.handleToggleEdit}
-            handleTodoChange={this.handleTodoChange}
-            handleUpdateTodo={this.handleUpdateTodo}
-            editable={editable}
-            modalOpen={modalOpen}
-            handleModalOpen={this.handleModalOpen}
-         />
-      );
-   }
-}
+   const handleModalOpen = (state) => {
+      setModalOpen(state);
+   };
+   return (
+      <Template
+         id={id}
+         description={description}
+         status={status}
+         handleToggleStatus={handleToggleStatus}
+         handleDelete={handleDelete}
+         handleToggleEdit={handleToggleEdit}
+         handleTodoChange={handleTodoChange}
+         handleUpdateTodo={handleUpdateTodo}
+         editable={editable}
+         modalOpen={modalOpen}
+         handleModalOpen={handleModalOpen}
+      />
+   );
+};
 TodoItem.propTypes = {
    id: PropTypes.string.isRequired,
    description: PropTypes.string.isRequired,
