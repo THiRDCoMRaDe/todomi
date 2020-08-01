@@ -1,47 +1,34 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-class AddTodo extends React.Component {
-   addTodo = this.props.addTodo;
-   state = {
-      newDescription: '',
-      error: null,
-      inputFocused: false,
+const AddTodo = ({ addTodo }) => {
+   const [description, setDescription] = React.useState('');
+   const [error, setError] = React.useState(null);
+   const [inputFocused, setInputFocused] = React.useState(false);
+   const handleNewDescriptionChange = (e) => {
+      const Description = e.target.value;
+      const error = Description === '' ? "Field can't be empty" : null;
+      setDescription(Description);
+      setError(error);
    };
-   handleNewDescriptionChange = (e) => {
-      const newDescription = e.target.value;
-      const error = newDescription === '' ? "Field can't be empty" : null;
-      this.setState({
-         newDescription,
-         error,
-      });
-   };
-   handleFormSubmit = (e) => {
+   const handleFormSubmit = (e) => {
       e.preventDefault();
-      this.addTodo(this.state.newDescription);
-      this.setState({
-         newDescription: '',
-      });
+      addTodo(description);
+      setDescription('');
    };
-   inputFocusHandler = (state) => {
-      this.setState({
-         inputFocused: state,
-      });
+   const inputFocusHandler = (state) => {
+      setInputFocused(state);
    };
-   render() {
-      const { newDescription, error, inputFocused } = this.state;
-      return (
-         <Template
-            value={newDescription}
-            error={error}
-            focused={inputFocused}
-            handleFormSubmit={this.handleFormSubmit}
-            handleChange={this.handleNewDescriptionChange}
-            inputFocusHandler={this.inputFocusHandler}
-         />
-      );
-   }
-}
+   return (
+      <Template
+         value={description}
+         error={error}
+         focused={inputFocused}
+         handleFormSubmit={handleFormSubmit}
+         handleChange={handleNewDescriptionChange}
+         inputFocusHandler={inputFocusHandler}
+      />
+   );
+};
 AddTodo.propTypes = {
    addTodo: PropTypes.func.isRequired,
 };
