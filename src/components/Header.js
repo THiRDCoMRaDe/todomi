@@ -3,16 +3,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ToggleTheme from './ToggleTheme';
 import { VhConsumer } from '../contexts/versionHistory';
-
-export default class Header extends React.Component {
-   state = {
-      title: 'ToDo./Mi🍺',
-   };
-   render() {
-      const { title, version } = this.state;
-      return <Template title={title} />;
-   }
-}
+const Header = () => {
+   const title = 'ToDo./Mi🍺';
+   return <Template title={title} />;
+};
 
 const Template = ({ title }) => {
    return (
@@ -40,3 +34,4 @@ const Template = ({ title }) => {
 Template.propTypes = {
    title: PropTypes.string.isRequired,
 };
+export default Header;
