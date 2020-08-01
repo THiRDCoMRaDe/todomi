@@ -1,5 +1,5 @@
 import React from 'react';
-import todoContext, { TodoConsumer } from '../contexts/todoList';
+import todoContext from '../contexts/todoList';
 import clearStorage from '../helpers/clearStorage';
 import debounce from '../helpers/debounce';
 import { css } from '@emotion/core';
