@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { AiFillCheckSquare, AiTwotoneEdit, AiFillDelete } from 'react-icons/ai';
 import { ConfirmModal } from './Modal';
 const TodoItem = (props) => {
-   /*const id = props.id;*/
    const { status, id } = props;
    const [description, setDescription] = React.useState(props.description);
    const [editable, setEditable] = React.useState(false);
