@@ -270,7 +270,10 @@ class App extends React.Component {
                         text: 'improved',
                         id: 2,
                      },
-                     list: ['Use react hooks to improve app performance wherever it was possible to do!'],
+                     list: [
+                        'Use react hooks to improve app performance wherever it was possible to do!',
+                        'Sort version history list',
+                     ],
                   },
                ],
             },

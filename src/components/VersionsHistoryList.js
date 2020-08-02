@@ -12,13 +12,17 @@ const VersionsHistoryList = (props) => {
          <VhConsumer>
             {({ updateLogs }) => (
                <ul className={'releases-info-list'}>
-                  {updateLogs.map((update) => (
-                     <li className={'releases-info-item'} key={update.version}>
-                        <Link className={'releases-info-link'} to={`${match.url}/${update.version}`}>
-                           <VersionHistory update={update} />
-                        </Link>
-                     </li>
-                  ))}
+                  {updateLogs
+                     .sort((a, b) => b.date - a.date)
+                     .map((update) => {
+                        return (
+                           <li className={'releases-info-item'} key={update.version}>
+                              <Link className={'releases-info-link'} to={`${match.url}/${update.version}`}>
+                                 <VersionHistory update={update} />
+                              </Link>
+                           </li>
+                        );
+                     })}
                </ul>
             )}
          </VhConsumer>
