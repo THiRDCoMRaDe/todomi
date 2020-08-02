@@ -11,7 +11,6 @@ const styles = {
       minWidth: '150px',
       bottom: '100%',
       left: '0',
-      /*marginLeft: '-80px',*/
       borderRadius: '3px',
       backgroundColor: 'rgba(256,256,256,.9)',
       padding: '7px',
