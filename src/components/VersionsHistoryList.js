@@ -1,31 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import VersionHistory from './VersionHistory';
-import { VhConsumer } from '../contexts/versionHistory';
+import vhContext, { VhConsumer } from '../contexts/versionHistory';
+import Sort from './Sort';
 import moment from 'moment';
 
 const VersionsHistoryList = (props) => {
    const { match } = props;
+   const { updateLogs } = React.useContext(vhContext);
    return (
       <>
          <h3 className={'releases-info-title'}>All Updates</h3>
-         <VhConsumer>
-            {({ updateLogs }) => (
-               <ul className={'releases-info-list'}>
-                  {updateLogs
-                     .sort((a, b) => b.date - a.date)
-                     .map((update) => {
-                        return (
-                           <li className={'releases-info-item'} key={update.version}>
-                              <Link className={'releases-info-link'} to={`${match.url}/${update.version}`}>
-                                 <VersionHistory update={update} />
-                              </Link>
-                           </li>
-                        );
-                     })}
-               </ul>
-            )}
-         </VhConsumer>
+         <ul className={'releases-info-list'}>
+            <Sort array={updateLogs} order={'za'} sortBy={'features.0.type.text'} nested={true}>
+               {(sortedUpdateLogs) =>
+                  sortedUpdateLogs.map((update) => {
+                     return (
+                        <li className={'releases-info-item'} key={update.version}>
+                           <Link className={'releases-info-link'} to={`${match.url}/${update.version}`}>
+                              <VersionHistory update={update} />
+                           </Link>
+                        </li>
+                     );
+                  })
+               }
+            </Sort>
+         </ul>
       </>
    );
 };

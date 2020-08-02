@@ -1,6 +1,7 @@
 import React from 'react';
 
-const { Provider, Consumer } = React.createContext([]);
+const vhContext = React.createContext([]);
 
-export const VhConsumer = Consumer;
-export const VhProvider = Provider;
+export const VhConsumer = vhContext.Consumer;
+export const VhProvider = vhContext.Provider;
+export default vhContext;
