@@ -90,6 +90,25 @@ body {
          text-decoration: inherit !important;
          outline: none;
       }
+      &::-webkit-input-placeholder {
+         transition: 0.7s;
+      }
+      &:-moz-placeholder {
+         transition: 0.7s;
+      }
+      &::-moz-placeholder {
+         transition: 0.7s;
+      }
+      &:-ms-input-placeholder {
+         transition: 0.7s;
+      }
+      &::-ms-input-placeholder {
+         transition: 0.7s;
+      }
+
+      &::placeholder {
+         transition: 0.7s;
+      }
    }
    &__error {
       color: $red;

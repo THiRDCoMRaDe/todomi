@@ -703,54 +703,43 @@ const data = {
 };
 import themeContext, { ThemeConsumer } from '../contexts/theme';
 let animObj = null;
-export default class ToggleTheme extends React.Component {
-   state = {
-      direction: 1,
-      theme: 'light',
+const ToggleTheme = () => {
+   const [direction, setDirection] = React.useState(1);
+   const { theme, switchTheme } = React.useContext(themeContext);
+   let animBox;
+   const toggleDirection = () => {
+      setDirection((prev) => -prev);
    };
-   componentDidMount() {
+   const toggle = () => {
+      toggleDirection();
+      animObj.setDirection(direction);
+      animObj.setSpeed(2);
+      animObj.play();
+      document.body.classList.remove(theme);
+   };
+   React.useEffect(() => {
       animObj = Lottie.loadAnimation({
-         container: this.animBox,
+         container: animBox,
          renderer: 'svg',
          loop: false,
          autoplay: false,
          animationData: data,
       });
-      document.body.classList.add(this.context.theme);
-   }
-   toggleDirection = () => {
-      this.setState({
-         direction: -this.state.direction,
-      });
-   };
-
-   toggle = () => {
-      this.toggleDirection();
-      animObj.setDirection(this.state.direction);
-      animObj.setSpeed(2);
-      animObj.play();
-      document.body.classList.remove(this.context.theme);
-   };
-   componentDidUpdate() {
-      document.body.classList.add(this.context.theme);
-   }
-
-   render() {
-      return (
-         <ThemeConsumer>
-            {({ theme, switchTheme }) => (
-               <div
-                  className={'svg-container'}
-                  onClick={() => {
-                     switchTheme();
-                     this.toggle();
-                  }}
-               >
-                  <div className="svg-animation" ref={(ref) => (this.animBox = ref)} />
-               </div>
-            )}
-         </ThemeConsumer>
-      );
-   }
-}
-ToggleTheme.contextType = themeContext;
+      document.body.classList.add(theme);
+   }, []);
+   React.useEffect(() => {
+      document.body.classList.add(theme);
+   });
+   return (
+      <div
+         className={'svg-container'}
+         onClick={() => {
+            switchTheme();
+            toggle();
+         }}
+      >
+         <div className="svg-animation" ref={(ref) => (animBox = ref)} />
+      </div>
+   );
+};
+export default ToggleTheme;
