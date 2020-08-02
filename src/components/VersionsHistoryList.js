@@ -12,7 +12,7 @@ const VersionsHistoryList = (props) => {
       <>
          <h3 className={'releases-info-title'}>All Updates</h3>
          <ul className={'releases-info-list'}>
-            <Sort array={updateLogs} order={'za'} sortBy={'features.0.type.text'} nested={true}>
+            <Sort array={updateLogs} order={'za'} sortBy={'date'} nested={true}>
                {(sortedUpdateLogs) =>
                   sortedUpdateLogs.map((update) => {
                      return (
