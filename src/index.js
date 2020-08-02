@@ -235,6 +235,45 @@ class App extends React.Component {
                   },
                ],
             },
+            {
+               version: '1.3',
+               date: '1596066564',
+               details: 'Add Themes and improve copy link functionality',
+               features: [
+                  {
+                     type: {
+                        text: 'new',
+                        id: 1,
+                     },
+                     list: [
+                        'Add button for switching between dark and light theme',
+                        'Add animation for theme switch button',
+                        'Add and update all related css file for theming',
+                     ],
+                  },
+                  {
+                     type: {
+                        text: 'improved',
+                        id: 2,
+                     },
+                     list: ['Use throttle method to reduce notify function calls'],
+                  },
+               ],
+            },
+            {
+               version: '2.0',
+               date: '1596366564',
+               details: '☕ Switched to HOOKS!',
+               features: [
+                  {
+                     type: {
+                        text: 'improved',
+                        id: 2,
+                     },
+                     list: ['Use react hooks to improve app performance wherever it was possible to do!'],
+                  },
+               ],
+            },
          ],
       },
       themeContext: {
