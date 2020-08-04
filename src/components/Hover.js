@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hover = ({ children }) => {
+/*gconst Hover = ({ children }) => {
    const [hovering, setHovering] = React.useState(false);
    const mouseOver = () => {
       setHovering(true);
@@ -14,4 +14,16 @@ const Hover = ({ children }) => {
       </div>
    );
 };
-export default Hover;
+export default Hover;*/
+
+function useHover() {
+   const [hovering, setHovering] = React.useState(false);
+   const mouseOver = () => setHovering(true);
+   const mouseOut = () => setHovering(false);
+   const attrs = {
+      onMouseOver: mouseOver,
+      onMouseOut: mouseOut,
+   };
+   return [hovering, attrs];
+}
+export default useHover;
