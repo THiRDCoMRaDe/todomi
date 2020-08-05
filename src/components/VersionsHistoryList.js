@@ -2,29 +2,32 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import VersionHistory from './VersionHistory';
 import vhContext, { VhConsumer } from '../contexts/versionHistory';
+import useSort from './Sort';
 import Sort from './Sort';
 import moment from 'moment';
 
 const VersionsHistoryList = (props) => {
    const { match } = props;
    const { updateLogs } = React.useContext(vhContext);
+   const sortedUpdateLogs = useSort({
+      array: updateLogs,
+      order: 'za',
+      sortBy: 'date',
+      nested: true,
+   });
    return (
       <>
          <h3 className={'releases-info-title'}>All Updates</h3>
          <ul className={'releases-info-list'}>
-            <Sort array={updateLogs} order={'za'} sortBy={'date'} nested={true}>
-               {(sortedUpdateLogs) =>
-                  sortedUpdateLogs.map((update) => {
-                     return (
-                        <li className={'releases-info-item'} key={update.version}>
-                           <Link className={'releases-info-link'} to={`${match.url}/${update.version}`}>
-                              <VersionHistory update={update} />
-                           </Link>
-                        </li>
-                     );
-                  })
-               }
-            </Sort>
+            {sortedUpdateLogs.map((update) => {
+               return (
+                  <li className={'releases-info-item'} key={update.version}>
+                     <Link className={'releases-info-link'} to={`${match.url}/${update.version}`}>
+                        <VersionHistory update={update} />
+                     </Link>
+                  </li>
+               );
+            })}
          </ul>
       </>
    );

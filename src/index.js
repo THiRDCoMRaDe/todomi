@@ -277,6 +277,20 @@ class App extends React.Component {
                   },
                ],
             },
+            {
+               version: '2.1',
+               date: '1596562930',
+               details: 'Add and update some components',
+               features: [
+                  {
+                     type: {
+                        text: 'improved',
+                        id: 2,
+                     },
+                     list: ['Add Sort component', 'Update hover component by custom hooks'],
+                  },
+               ],
+            },
          ],
       },
       themeContext: {
