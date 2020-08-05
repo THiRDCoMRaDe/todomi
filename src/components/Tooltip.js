@@ -1,5 +1,4 @@
 import React from 'react';
-import Hover from './Hover';
 import useHover from './Hover';
 const styles = {
    container: {

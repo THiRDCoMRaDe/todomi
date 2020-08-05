@@ -1,27 +1,52 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+
+const initialState = { description: '', error: null };
+const reducer = (state, action) => {
+   switch (action.type) {
+      case 'update_description':
+         return {
+            description: action.description,
+            error: action.error,
+         };
+      case 'submit_form':
+         return {
+            description: action.description,
+            error: action.error,
+         };
+      default:
+         throw new Error();
+   }
+};
+
 const AddTodo = ({ addTodo }) => {
-   const [description, setDescription] = React.useState('');
-   const [error, setError] = React.useState(null);
+   const [state, dispatch] = React.useReducer(reducer, initialState);
    const [inputFocused, setInputFocused] = React.useState(false);
    const handleNewDescriptionChange = (e) => {
-      const Description = e.target.value;
-      const error = Description === '' ? "Field can't be empty" : null;
-      setDescription(Description);
-      setError(error);
+      const description = e.target.value;
+      const error = description === '' ? "Field can't be empty" : null;
+      dispatch({
+         type: 'update_description',
+         description,
+         error,
+      });
    };
    const handleFormSubmit = (e) => {
       e.preventDefault();
-      addTodo(description);
-      setDescription('');
+      addTodo(state.description);
+      dispatch({
+         type: 'submit_form',
+         description: '',
+         error: null,
+      });
    };
    const inputFocusHandler = (state) => {
       setInputFocused(state);
    };
    return (
       <Template
-         value={description}
-         error={error}
+         value={state.description}
+         error={state.error}
          focused={inputFocused}
          handleFormSubmit={handleFormSubmit}
          handleChange={handleNewDescriptionChange}

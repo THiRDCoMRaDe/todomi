@@ -1,6 +1,6 @@
 import React from 'react';
-import { useLocation, Route, Redirect } from 'react-router-dom';
-import todoContext, { TodoConsumer } from '../contexts/todoList';
+import { useLocation } from 'react-router-dom';
+import todoContext from '../contexts/todoList';
 import TodoItem from './TodoItem';
 import { AiFillWarning } from 'react-icons/ai';
 import PerfectScrollbar from 'react-perfect-scrollbar';

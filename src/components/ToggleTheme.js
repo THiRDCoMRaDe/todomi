@@ -701,7 +701,7 @@ const data = {
    ],
    markers: [],
 };
-import themeContext, { ThemeConsumer } from '../contexts/theme';
+import themeContext from '../contexts/theme';
 let animObj = null;
 const ToggleTheme = () => {
    const [direction, setDirection] = React.useState(1);
