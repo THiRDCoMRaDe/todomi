@@ -7,8 +7,7 @@ import moment from 'moment';
 import Clipboard from 'clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 
-const Template = (props) => {
-   const { version, date, details, features, children, clipboardIdSelector } = props;
+const Template = ({ version, date, details, features, children, clipboardIdSelector }) => {
    const notify = () =>
       toast('Link copied to clipboard!', {
          position: 'bottom-center',
@@ -79,7 +78,14 @@ const Template = (props) => {
       </div>
    );
 };
-
+Template.propTypes = {
+   version: PropTypes.string.isRequired,
+   date: PropTypes.string.isRequired,
+   details: PropTypes.string.isRequired,
+   children: PropTypes.object.isRequired,
+   features: PropTypes.array.isRequired,
+   clipboardIdSelector: PropTypes.string.isRequired,
+};
 const VersionHistory = (props) => {
    const { update, children } = props;
    const { version, date, details, features } = update ? update : {};
