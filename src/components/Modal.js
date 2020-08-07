@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 export const ConfirmModal = ({ isOpen, children, handleConfirm, handleCancel }) => {
    return (
       <Modal isOpen={isOpen} contentLabel="Selected Option" ariaHideApp={false} closeTimeoutMS={200} className="modal">
@@ -14,4 +15,10 @@ export const ConfirmModal = ({ isOpen, children, handleConfirm, handleCancel }) 
          </div>
       </Modal>
    );
+};
+ConfirmModal.propTypes = {
+   isOpen: PropTypes.bool.isRequired,
+   children: PropTypes.object.isRequired,
+   handleConfirm: PropTypes.func.isRequired,
+   handleCancel: PropTypes.func.isRequired,
 };
