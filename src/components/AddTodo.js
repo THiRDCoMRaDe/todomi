@@ -88,5 +88,7 @@ Template.propTypes = {
    error: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.oneOf([null]).isRequired]),
    handleFormSubmit: PropTypes.func.isRequired,
    handleChange: PropTypes.func.isRequired,
+   focused: PropTypes.bool.isRequired,
+   inputFocusHandler: PropTypes.func.isRequired,
 };
 export default AddTodo;
