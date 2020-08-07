@@ -2,71 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AiFillCheckSquare, AiTwotoneEdit, AiFillDelete } from 'react-icons/ai';
 import { ConfirmModal } from './Modal';
-const TodoItem = (props) => {
-   const { status, id } = props;
-   const [description, setDescription] = React.useState(props.description);
-   const [editable, setEditable] = React.useState(false);
-   const [modalOpen, setModalOpen] = React.useState(false);
-   const handleToggleStatus = () => {
-      props.toggleStatus(id);
-   };
-   const handleDelete = () => {
-      props.removeTodo(id);
-   };
-   const handleToggleEdit = () => {
-      setEditable((prev) => {
-         return !prev;
-      });
-   };
-   const handleTodoChange = (event) => {
-      setDescription(event.target.value);
-   };
-   const handleUpdateTodo = (update) => {
-      props.updateTodo(update);
-      handleToggleEdit();
-   };
-   const handleModalOpen = (state) => {
-      setModalOpen(state);
-   };
-   return (
-      <Template
-         id={id}
-         description={description}
-         status={status}
-         handleToggleStatus={handleToggleStatus}
-         handleDelete={handleDelete}
-         handleToggleEdit={handleToggleEdit}
-         handleTodoChange={handleTodoChange}
-         handleUpdateTodo={handleUpdateTodo}
-         editable={editable}
-         modalOpen={modalOpen}
-         handleModalOpen={handleModalOpen}
-      />
-   );
-};
-TodoItem.propTypes = {
-   id: PropTypes.string.isRequired,
-   description: PropTypes.string.isRequired,
-   status: PropTypes.number.isRequired,
-   removeTodo: PropTypes.func.isRequired,
-   toggleStatus: PropTypes.func.isRequired,
-   updateTodo: PropTypes.func.isRequired,
-};
 
-const Template = (props) => {
-   const {
-      id,
-      description,
-      status,
-      handleToggleStatus,
-      handleDelete,
-      handleToggleEdit,
-      handleTodoChange,
-      handleUpdateTodo,
-      handleModalOpen,
-      editable,
-      modalOpen,
-   } = props;
+const Template = ({
+   id,
+   description,
+   status,
+   handleToggleStatus,
+   handleDelete,
+   handleToggleEdit,
+   handleTodoChange,
+   handleUpdateTodo,
+   handleModalOpen,
+   editable,
+   modalOpen,
+}) => {
    return (
       <>
          <span className={'item__icon'}>
@@ -125,5 +74,58 @@ Template.propTypes = {
    handleToggleEdit: PropTypes.func.isRequired,
    handleTodoChange: PropTypes.func.isRequired,
    handleUpdateTodo: PropTypes.func.isRequired,
+   handleModalOpen: PropTypes.func.isRequired,
+   modalOpen: PropTypes.bool.isRequired,
 };
+
+const TodoItem = ({ status, id, description: propDescription, toggleStatus, removeTodo, updateTodo }) => {
+   const [description, setDescription] = React.useState(propDescription);
+   const [editable, setEditable] = React.useState(false);
+   const [modalOpen, setModalOpen] = React.useState(false);
+   const handleToggleStatus = () => {
+      toggleStatus(id);
+   };
+   const handleDelete = () => {
+      removeTodo(id);
+   };
+   const handleToggleEdit = () => {
+      setEditable((prev) => {
+         return !prev;
+      });
+   };
+   const handleTodoChange = (event) => {
+      setDescription(event.target.value);
+   };
+   const handleUpdateTodo = (update) => {
+      updateTodo(update);
+      handleToggleEdit();
+   };
+   const handleModalOpen = (state) => {
+      setModalOpen(state);
+   };
+   return (
+      <Template
+         id={id}
+         description={description}
+         status={status}
+         handleToggleStatus={handleToggleStatus}
+         handleDelete={handleDelete}
+         handleToggleEdit={handleToggleEdit}
+         handleTodoChange={handleTodoChange}
+         handleUpdateTodo={handleUpdateTodo}
+         editable={editable}
+         modalOpen={modalOpen}
+         handleModalOpen={handleModalOpen}
+      />
+   );
+};
+TodoItem.propTypes = {
+   id: PropTypes.string.isRequired,
+   description: PropTypes.string.isRequired,
+   status: PropTypes.number.isRequired,
+   removeTodo: PropTypes.func.isRequired,
+   toggleStatus: PropTypes.func.isRequired,
+   updateTodo: PropTypes.func.isRequired,
+};
+
 export default TodoItem;

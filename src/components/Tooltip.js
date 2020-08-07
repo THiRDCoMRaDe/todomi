@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useHover from './Hover';
 const styles = {
    container: {
@@ -28,5 +29,9 @@ const Tooltip = ({ text, children }) => {
          {children}
       </div>
    );
+};
+Tooltip.propTypes = {
+   text: PropTypes.string.isRequired,
+   children: PropTypes.node.isRequired,
 };
 export default Tooltip;

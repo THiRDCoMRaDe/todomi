@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Tooltip from './Tooltip';
 import throttle from '../helpers/throttle';
 import { AiOutlineLink, AiFillCheckSquare } from 'react-icons/ai';
@@ -6,31 +7,6 @@ import moment from 'moment';
 import Clipboard from 'clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 
-const VersionHistory = (props) => {
-   const { update, children } = props;
-   const { version, date, details, features } = update ? update : {};
-   let clipboardIdSelector = 'copy';
-   React.useEffect(() => {
-      new Clipboard(`#${clipboardIdSelector}`, {
-         text: () => `${window.location.href}`,
-      });
-   }, []);
-   return (
-      <>
-         {update && (
-            <Template
-               clipboardIdSelector={clipboardIdSelector}
-               version={version}
-               date={date}
-               details={details}
-               features={features}
-               children={children}
-               {...props}
-            />
-         )}
-      </>
-   );
-};
 const Template = (props) => {
    const { version, date, details, features, children, clipboardIdSelector } = props;
    const notify = () =>
@@ -103,4 +79,36 @@ const Template = (props) => {
       </div>
    );
 };
+
+const VersionHistory = (props) => {
+   const { update, children } = props;
+   const { version, date, details, features } = update ? update : {};
+   let clipboardIdSelector = 'copy';
+   React.useEffect(() => {
+      new Clipboard(`#${clipboardIdSelector}`, {
+         text: () => `${window.location.href}`,
+      });
+   }, []);
+   return (
+      <>
+         {update && (
+            <Template
+               clipboardIdSelector={clipboardIdSelector}
+               version={version}
+               date={date}
+               details={details}
+               features={features}
+               children={children}
+               {...props}
+            />
+         )}
+      </>
+   );
+};
+
+VersionHistory.propTypes = {
+   update: PropTypes.object.isRequired,
+   children: PropTypes.object,
+};
+
 export default VersionHistory;

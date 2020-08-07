@@ -1,6 +1,7 @@
 import React from 'react';
-const NotFound = (props) => {
-   const from = props.location.state ? props.location.state.from.pathname.substr(1) : null;
+import PropTypes from 'prop-types';
+const NotFound = ({ location }) => {
+   const from = location.state ? location.state.from.pathname.substr(1) : null;
    return from ? (
       <div>
          <h2>
@@ -14,5 +15,8 @@ const NotFound = (props) => {
          <h2>404</h2>
       </div>
    );
+};
+NotFound.propTypes = {
+   location: PropTypes.object.isRequired,
 };
 export default NotFound;
