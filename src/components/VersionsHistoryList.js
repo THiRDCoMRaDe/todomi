@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import VersionHistory from './VersionHistory';
 import vhContext from '../contexts/versionHistory';
-import useSort from './Sort';
+import useSort from '../hooks/Sort';
 import moment from 'moment';
 
 const VersionsHistoryList = (props) => {

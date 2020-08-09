@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useHover from './Hover';
+import useHover from '../hooks/Hover';
 const styles = {
    container: {
       position: 'relative',
